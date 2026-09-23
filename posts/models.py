@@ -4,6 +4,14 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     text = models.CharField()
 
+class Post(models.Model):
+    title = models.CharField(max_length=255)
+    text = models.TextField()
+    
+    is_published = models.BooleanField(default=True, verbose_name="Опубликовано")
+
+    def __str__(self):
+        return self.title
 # #C-R-U-D
 # #create - C
 
