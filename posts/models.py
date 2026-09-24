@@ -1,12 +1,18 @@
 from django.db import models
 
-class Post(models.Model):
-    title = models.CharField(max_length=255)
-    text = models.CharField()
+class Category(models.Model):
+    name = models.CharField()
+
+
+class Tag(models.Model):
+    name = models.CharField()
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
     text = models.TextField()
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    tag = models.ManyToManyField(Tag)
+    image = models.ImageField(null=True, upload_to='posts')
     
     is_published = models.BooleanField(default=True, verbose_name="Опубликовано")
 

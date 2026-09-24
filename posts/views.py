@@ -16,6 +16,6 @@ def say_name(r, name):
     return HttpResponse(f'<h2> Hello </h2> <h1>{name}</h1>')
 
 def post_list(r):
-    posts = Post.objects.filter(is_published=True)
+    posts = Post.objects.all()
 
-    return render(r, "list_posts.html", {"posts": posts})
+    return render(r, "posts/list_posts.html", {"posts": posts})

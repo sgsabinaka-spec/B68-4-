@@ -7,10 +7,19 @@
 </head>
 <body>
 
-    {% for post in post %}
+    {% for post in posts %}
     <h1>{{ post.title }}</h1>
     <h2>{{ post.text| truncatewords:10 }}</h2>
+    {% if post.category %}
+    <h3>{{ post.category.name }}</h3>
+    {% else %}
+    <h3> No category </h3>
+    {% endif %}
+    <img src="{% if post.image.url %}" alt="">
+    {% endif %}
+    {% for tags in post.tags.all %}
+    {{ tags.name }}
     {% endfor %}
-
+    {% endfor %}
 </body>
 </html>

@@ -16,6 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static 
+from django.conf import settings
+
 from posts.views import HelloWorld, my_name, say_name, post_list
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,3 +27,7 @@ urlpatterns = [
     path('name/<str:name>', say_name),
     path('', post_list)
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, dcoument_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, dcoument_root=settings.MEDIA_ROOT)
